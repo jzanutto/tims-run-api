@@ -1,25 +1,28 @@
 create database if not exists mydb;
 
-create table USERS (
+use mydb;
+
+create table if not exists USERS (
     name varchar(50) not null,
+    email varchar(255) not null,
     token varchar(255) not null,
     uid int not null primary key auto_increment
 );
 
-create table ORDERS (
-    orid int not null primary key auto_increment
+create table if not exists ORDERS (
+    orid int not null primary key auto_increment,
     item varchar(255) not null,
     size varchar(10) not null,
     price decimal(10) not null,
     details varchar(255) not null
 );
 
-create table GROUPS (
+create table if not exists GROUPS (
     gid int not null primary key auto_increment,
     name varchar(255) not null
 );
 
-create table OWNING (
+create table if not exists OWNING (
     balance decimal(10) not null,
     from_uid int not null,
     to_uid int not null,
@@ -30,14 +33,14 @@ create table OWNING (
     FOREIGN KEY (to_uid) REFERENCES USERS(uid)
 );
 
-create table REQUESTS (
+create table if not exists REQUESTS (
     gid int not null,
     orid int not null,
     uid int not null,
     primary key (gid, orid, uid)
 );
 
-create table USERGROUPS (
+create table if not exists USERGROUPS (
     name varchar(255) not null,
     uid int not null,
     gid int not null,

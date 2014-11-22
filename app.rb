@@ -1,61 +1,27 @@
 require 'sequel'
 require 'sinatra'
+require 'active_record'
 
-DB = Sequel.connect('mysql2://root@localhost/mydb')
+ActiveRecord::Base.establish_connection("mysql2://root@localhost/mydb")
+# ActiveRecord::Base.connection.execute(IO.read("./db/db.sql"))
+`/usr/local/mysql/bin/mysql -uroot < db/db.sql`
 
-
-class Users
-  def initialize
-    @@user = DB.from(:users)
-  end
-  def user
-    @@user
-  end
+class Users < ActiveRecord::Base
+  self.table_name = "USERS"
 end
 
-class Groups
-  def initialize
-    @@groups = DB.from(:orders)
-  end
-
-  def group
-    @@group
-  end
+class Groups < ActiveRecord::Base
+  self.table_name = "GROUPS"
 end
 
-class UserGroups
-  def initialize
-    @@usergroups = DB.from(:orders)
-  end
-
-  def usergroup
-    @@usergroup
-  end
+class UserGroups < ActiveRecord::Base
+  self.table_name = "USERGROUPS"
 end
 
-class Orders
-  def initialize
-    @@orders = DB.from(:orders)
-  end
-
-  def orders
-    @@orders
-  end
+class Orders < ActiveRecord::Base
+  self.table_name = "ORDERS"
 end
 
-class Requests
-  def initialize
-    @@requests = DB.from(:requests)
-  end
-
-  def requests
-    @@requests
-  end
-end
-
-get '/' do
-  a = Users.new
-  a.user.insert(name: "FASIH", token: "FFF")
-  puts a.user.count
-  
+class Requests < ActiveRecord::Base
+  self.table_name = "REQUESTS"
 end

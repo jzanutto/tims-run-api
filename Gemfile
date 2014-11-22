@@ -5,3 +5,5 @@ gem 'shotgun'
 
 gem 'mysql2'
 gem 'sequel'
+
+gem 'activerecord'
