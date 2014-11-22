@@ -1,9 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    mysql2 (0.3.17)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
+    sequel (4.16.0)
     shotgun (0.9)
       rack (>= 1.0)
     sinatra (1.4.5)
@@ -16,5 +18,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  mysql2
+  sequel
   shotgun
   sinatra

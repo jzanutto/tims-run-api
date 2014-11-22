@@ -1,3 +1,4 @@
+require './app'
 require 'sinatra'
 
 module Router
