@@ -1,3 +1,4 @@
+require './app'
 require 'sinatra'
 require './api/gcm_adapter'
 
