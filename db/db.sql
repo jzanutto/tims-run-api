@@ -1,3 +1,5 @@
+create database if not exists mydb;
+
 create table USERS (
     name varchar(50) not null,
     token varchar(255) not null,
