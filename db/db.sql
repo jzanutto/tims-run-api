@@ -1,10 +1,11 @@
 create table USERS (
     name varchar(50) not null,
     token varchar(255) not null,
-    uid int not null primary key
+    uid int not null primary key auto_increment
 );
 
 create table ORDERS (
+    orid int not null primary key auto_increment
     item varchar(255) not null,
     size varchar(10) not null,
     price decimal(10) not null,
@@ -12,10 +13,8 @@ create table ORDERS (
 );
 
 create table GROUPS (
-    gid int not null,
-    name varchar(255) not null,
-
-    primary key (gid)
+    gid int not null primary key auto_increment,
+    name varchar(255) not null
 );
 
 create table OWNING (
@@ -29,6 +28,12 @@ create table OWNING (
     FOREIGN KEY (to_uid) REFERENCES USERS(uid)
 );
 
+create table REQUESTS (
+    gid int not null,
+    orid int not null,
+    uid int not null,
+    primary key (gid, orid, uid)
+);
 
 create table USERGROUPS (
     name varchar(255) not null,

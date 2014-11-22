@@ -1,29 +1,61 @@
 require 'sequel'
 require 'sinatra'
 
-DB = Sequel.connect('mysql2://mydb')
+DB = Sequel.connect('mysql2://root@localhost/mydb')
 
 
 class Users
-  @@user = DB.from(:users)
+  def initialize
+    @@user = DB.from(:users)
+  end
   def user
     @@user
   end
 end
 
 class Groups
-  @@groups = DB.from(:orders)
+  def initialize
+    @@groups = DB.from(:orders)
+  end
+
+  def group
+    @@group
+  end
 end
 
 class UserGroups
-  @@usergroups = DB.from(:orders)
+  def initialize
+    @@usergroups = DB.from(:orders)
+  end
+
+  def usergroup
+    @@usergroup
+  end
 end
 
 class Orders
-  @@orders = DB.from(:orders)
+  def initialize
+    @@orders = DB.from(:orders)
+  end
+
+  def orders
+    @@orders
+  end
+end
+
+class Requests
+  def initialize
+    @@requests = DB.from(:requests)
+  end
+
+  def requests
+    @@requests
+  end
 end
 
 get '/' do
   a = Users.new
-  puts a.get_user
+  a.user.insert(name: "FASIH", token: "FFF")
+  puts a.user.count
+  
 end
