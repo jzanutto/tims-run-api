@@ -25,3 +25,7 @@ end
 class Requests < ActiveRecord::Base
   self.table_name = "REQUESTS"
 end
+
+class Owing < ActiveRecord::Base
+  self.table_name = "OWNING"
+end

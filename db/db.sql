@@ -13,7 +13,7 @@ create table if not exists ORDERS (
     orid int not null primary key auto_increment,
     item varchar(255) not null,
     size varchar(10) not null,
-    price decimal(10) not null,
+    price decimal(5,2) not null,
     details varchar(255) not null
 );
 
@@ -21,9 +21,9 @@ create table if not exists GROUPS (
     gid int not null primary key auto_increment,
     name varchar(255) not null
 );
-
+-- GET FUCKING OWNED
 create table if not exists OWNING (
-    balance decimal(10) not null,
+    balance decimal(5,2) not null,
     from_uid int not null,
     to_uid int not null,
 
