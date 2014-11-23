@@ -93,13 +93,25 @@ module Router
 
         get '/api/tims/group/requests' do
           requests = Requests.where(gid: params[:gid])
+          if requests.nil?
+            status 404
+            return
+          end
           result = "["
           requests.each do |req|
-            result << Orders.find(orid: req.orid).to_json << ","
+            order = Orders.find(req.orid)
+            if !order.nil?
+              result << order.to_json << ","
+            end
           end
           # hack again
-          result[result.size-1] = ''
-          result << "]"
+          if result.length > 5
+            result[result.size-1] = ''
+            result << "]"
+          else
+            status 404
+            return
+          end
           puts result
           if !requests.nil?
             body result
@@ -123,7 +135,7 @@ module Router
         end
 
         delete '/api/tims/group/request' do
-        end        
+        end
 
         post '/api/tims/group/request' do
           group = Groups.find(params[:gid])
